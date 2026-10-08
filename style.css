@@ -1,0 +1,583 @@
+:root {
+    --background: #efefea;
+    --text: #17181b;
+
+    --pink-top: #ef9fc1;
+    --pink-body: #f7bfd7;
+
+    --blue-top: #80b9ee;
+    --blue-body: #a5d1f8;
+
+    --yellow-top: #f2b52b;
+    --yellow-body: #f4cd5f;
+
+    --name-background: #f4b8d5;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: "DM Sans", Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================
+   MAC BAR
+========================= */
+
+.mac-bar {
+    height: 54px;
+    background: var(--name-background);
+    border-bottom: 1px solid #dc9fbd;
+
+    display: flex;
+    align-items: center;
+
+    padding-left: 30px;
+    gap: 9px;
+}
+
+.mac-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #7d4d63;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.35);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    height: 110px;
+
+    border-bottom: 1px solid #bdbdbd;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+}
+
+.file-name {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+}
+
+.date {
+    margin-top: 6px;
+    font-size: 20px;
+    color: #555;
+}
+
+.tools {
+    display: flex;
+    gap: 25px;
+    color: #999;
+    font-size: 28px;
+}
+
+
+/* =========================
+   MAIN CANVAS
+========================= */
+
+.canvas {
+    width: min(1100px, 100%);
+    min-height: 950px;
+    margin: auto;
+    position: relative;
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile {
+    position: absolute;
+    left: 50%;
+    top: 250px;
+    width: min(420px, calc(100vw - 32px));
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 10;
+}
+
+.photo-frame {
+    position: relative;
+    width: 360px;
+    height: 450px;
+    margin: 0 auto;
+}
+
+.photo {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: #dededc;
+    border: 10px solid #dededc;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.04);
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+.photo-decoration {
+    position: absolute;
+    inset: -18%;
+    width: 136%;
+    height: 136%;
+    object-fit: fill;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.photo-indicator {
+    position: absolute;
+    top: 175px;
+    right: -105px;
+    width: 100px;
+    height: auto;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    transform: rotate(-8deg);
+}
+
+.name {
+    position: relative;
+    z-index: 2;
+    display: inline-block;
+    margin: 0 0 15px;
+    padding: 9px 18px 11px;
+    border: 1px solid rgba(75, 48, 63, 0.18);
+    background: var(--name-background);
+    border-radius: 26px;
+    box-shadow: 0 5px 16px rgba(50, 30, 40, 0.12);
+    color: #29232a;
+    font-size: 31px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+}
+
+.role {
+    position: relative;
+    z-index: 2;
+    width: fit-content;
+    max-width: min(100%, 38ch);
+    margin: 14px auto 0;
+    padding: 9px 16px;
+    border: 1px solid rgba(75, 48, 63, 0.18);
+    border-radius: 999px;
+    background: rgba(255, 250, 252, 0.94);
+    box-shadow: 0 5px 16px rgba(50, 30, 40, 0.12);
+    color: #40333b;
+    font-size: clamp(13px, 1.4vw, 15px);
+    font-weight: 600;
+    letter-spacing: 0.035em;
+    line-height: 1.45;
+    text-wrap: balance;
+}
+
+
+/* =========================
+   FOLDERS
+========================= */
+
+.folder {
+    position: absolute;
+
+    width: 170px;
+
+    text-align: center;
+
+    cursor: pointer;
+    isolation: isolate;
+
+    transition: transform 0.2s ease;
+}
+
+.folder:hover {
+    transform: translateY(-8px) rotate(-1deg);
+    filter: saturate(1.15) contrast(1.08);
+}
+
+.folder::before {
+    content: "★";
+    position: absolute;
+    top: -34px;
+    left: 50%;
+    transform: translateX(-50%) translateY(14px) scale(0.7) rotate(-10deg);
+    opacity: 0;
+    pointer-events: none;
+    font-size: 26px;
+    line-height: 1;
+    font-weight: 700;
+    color: var(--spark-1);
+    text-shadow:
+        28px 18px 0 var(--spark-2),
+        -36px 10px 0 var(--spark-3),
+        54px 30px 0 var(--spark-4),
+        -18px 42px 0 var(--spark-2),
+        72px 2px 0 var(--spark-3),
+        12px 54px 0 var(--spark-1);
+    filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.18));
+    transition: opacity 0.22s ease, transform 0.25s ease;
+    z-index: -1;
+}
+
+.folder:hover::before {
+    opacity: 1;
+    animation: sparkle-flyout 0.55s ease forwards;
+}
+
+@keyframes sparkle-flyout {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(18px) scale(0.7) rotate(-10deg);
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-26px) scale(1.15) rotate(12deg);
+    }
+}
+
+.folder-icon {
+    position: relative;
+
+    width: 170px;
+    height: 125px;
+
+    filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.08));
+}
+
+.folder-icon::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 78px;
+    height: 34px;
+
+    border-radius: 18px 18px 0 0;
+
+    background: var(--folder-top);
+}
+
+.folder-icon::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    top: 20px;
+    bottom: 0;
+
+    border-radius: 0 18px 13px 13px;
+
+    background: var(--folder-body);
+
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.02);
+}
+
+
+/* =========================
+   FOLDER COLORS
+========================= */
+
+.pink {
+    --folder-top: var(--pink-top);
+    --folder-body: var(--pink-body);
+    --spark-1: #7d4d63;
+    --spark-2: #5d2f43;
+    --spark-3: #9a5262;
+    --spark-4: #3c1f30;
+}
+
+.blue {
+    --folder-top: var(--blue-top);
+    --folder-body: var(--blue-body);
+    --spark-1: #355f87;
+    --spark-2: #1d496d;
+    --spark-3: #5d8bb6;
+    --spark-4: #123553;
+}
+
+.yellow {
+    --folder-top: var(--yellow-top);
+    --folder-body: var(--yellow-body);
+    --spark-1: #7f5d19;
+    --spark-2: #5f3d08;
+    --spark-3: #b9831d;
+    --spark-4: #3b2a09;
+}
+
+
+/* =========================
+   FOLDER NAME
+========================= */
+
+.folder-name {
+    margin-top: 8px;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    letter-spacing: -0.7px;
+
+    line-height: 1.05;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================
+   FOLDER POSITIONS
+========================= */
+
+.instagram {
+    left: 50px;
+    top: 75px;
+}
+
+.linkedin {
+    right: 35px;
+    top: 105px;
+}
+
+.behance {
+    left: 15px;
+    top: 455px;
+}
+
+.artstation {
+    right: 20px;
+    top: 485px;
+}
+
+.email {
+    left: 105px;
+    top: 770px;
+}
+
+.portfolio {
+    right: 105px;
+    top: 765px;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 980px) {
+
+    .header {
+        padding: 0 18px;
+    }
+
+    .mac-bar {
+        padding-left: 18px;
+    }
+
+    .tools {
+        display: none;
+    }
+
+    .canvas {
+        width: min(760px, calc(100% - 30px));
+        min-height: auto;
+        padding: 30px 0 70px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
+        gap: 42px 18px;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .profile {
+        position: static;
+        top: auto;
+        left: auto;
+        width: min(420px, 100%);
+        transform: none;
+        grid-column: 1 / -1;
+        order: 3;
+        margin: 0 auto 10px;
+    }
+
+    .photo-frame {
+        width: min(320px, 62vw);
+        height: min(400px, 62vw);
+    }
+
+    .name {
+        font-size: clamp(22px, 2vw, 30px);
+    }
+
+    .folder {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        width: min(180px, 42vw);
+    }
+
+    .folder-icon {
+        width: 100%;
+        height: clamp(90px, 15vw, 120px);
+    }
+
+    .folder-name {
+        font-size: clamp(16px, 2vw, 20px);
+    }
+
+    .instagram { order: 1; }
+    .linkedin { order: 2; }
+    .behance { order: 4; }
+    .artstation { order: 5; }
+    .email { order: 6; }
+    .portfolio { order: 7; }
+
+    .photo-indicator {
+        display: none;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 560px) {
+
+    .header {
+        height: 88px;
+    }
+
+    .file-name {
+        font-size: 20px;
+    }
+
+    .date {
+        font-size: 15px;
+    }
+
+    .canvas {
+        width: min(100%, calc(100% - 24px));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px 14px;
+        padding: 16px 0 48px;
+    }
+
+    .profile {
+        order: 0;
+        grid-column: 1 / -1;
+        margin: 0 auto 4px;
+    }
+
+    .instagram { order: 1; }
+    .linkedin { order: 2; }
+    .behance { order: 3; }
+    .artstation { order: 4; }
+    .email { order: 5; }
+    .portfolio { order: 6; }
+
+    .photo-frame {
+        width: min(220px, 62vw);
+        height: min(280px, 62vw);
+    }
+
+    .name {
+        margin-bottom: 12px;
+        padding: 8px 16px 9px;
+        font-size: clamp(23px, 6vw, 28px);
+    }
+
+    .role {
+        margin-top: 12px;
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+    .folder {
+        width: min(132px, 40vw);
+    }
+
+    .folder-icon {
+        height: clamp(76px, 21vw, 96px);
+    }
+
+    .folder-icon::before {
+        width: 52px;
+        height: 23px;
+
+        border-radius: 12px 12px 0 0;
+    }
+
+    .folder-icon::after {
+        top: 13px;
+
+        border-radius: 0 12px 9px 9px;
+    }
+
+    .folder-name {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 420px) {
+    .instagram,
+    .linkedin,
+    .behance,
+    .artstation,
+    .email,
+    .portfolio {
+        grid-column: auto;
+    }
+
+    .profile {
+        grid-column: 1 / -1;
+    }
+
+    .instagram, .linkedin, .behance, .artstation, .email, .portfolio {
+        width: min(132px, 40vw);
+    }
+}
