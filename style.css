@@ -118,7 +118,7 @@ a {
 .profile {
     position: absolute;
     left: 50%;
-    top: 250px;
+    top: 200px;
     width: min(420px, calc(100vw - 32px));
     transform: translateX(-50%);
     text-align: center;
@@ -383,23 +383,23 @@ a {
 }
 
 .behance {
-    left: 15px;
-    top: 455px;
-}
-
-.artstation {
-    right: 20px;
-    top: 485px;
-}
-
-.email {
     left: 105px;
     top: 770px;
 }
 
-.portfolio {
+.artstation {
     right: 105px;
     top: 765px;
+}
+
+.email {
+    left: 15px;
+    top: 455px;
+}
+
+.portfolio {
+    right: 20px;
+    top: 455px;
 }
 
 
@@ -462,7 +462,8 @@ a {
 
     .folder-icon {
         width: 100%;
-        height: clamp(90px, 15vw, 120px);
+        height: auto;
+        aspect-ratio: 170 / 125;
     }
 
     .folder-name {
@@ -471,10 +472,10 @@ a {
 
     .instagram { order: 1; }
     .linkedin { order: 2; }
-    .behance { order: 4; }
-    .artstation { order: 5; }
-    .email { order: 6; }
-    .portfolio { order: 7; }
+    .behance { order: 6; }
+    .artstation { order: 7; }
+    .email { order: 4; }
+    .portfolio { order: 5; }
 
     .photo-indicator {
         display: none;
@@ -515,10 +516,10 @@ a {
 
     .instagram { order: 1; }
     .linkedin { order: 2; }
-    .behance { order: 3; }
-    .artstation { order: 4; }
-    .email { order: 5; }
-    .portfolio { order: 6; }
+    .behance { order: 5; }
+    .artstation { order: 6; }
+    .email { order: 3; }
+    .portfolio { order: 4; }
 
     .photo-frame {
         width: min(220px, 62vw);
@@ -542,18 +543,20 @@ a {
     }
 
     .folder-icon {
-        height: clamp(76px, 21vw, 96px);
+        width: 100%;
+        height: auto;
+        aspect-ratio: 170 / 125;
     }
 
     .folder-icon::before {
-        width: 52px;
-        height: 23px;
+        width: 46%;
+        height: 27%;
 
         border-radius: 12px 12px 0 0;
     }
 
     .folder-icon::after {
-        top: 13px;
+        top: 16%;
 
         border-radius: 0 12px 9px 9px;
     }
